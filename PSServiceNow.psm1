@@ -1,3 +1,8 @@
+function Write-UpdateWarning {
+    Write-Warning 'PSServiceNow has been renamed to ServiceNow on the PSGallery!  Use Install-Module ServiceNow to get the latest update.'
+}
+Write-UpdateWarning
+
 function Test-ServiceNowAuthIsSet{
     if($Global:ServiceNowCredentials){
         return $true;
@@ -7,7 +12,6 @@ function Test-ServiceNowAuthIsSet{
 }
 
 function New-ServiceNowQuery{
-
     param(
         # Machine name of the field to order by
         [parameter(mandatory=$false)]
@@ -60,6 +64,9 @@ function Set-ServiceNowAuth{
         [parameter(mandatory=$true)]
         [System.Management.Automation.PSCredential]$Credentials
     )
+    # Calling the test ensures Write-UpdateWarning triggers if this cmdlet auto-imports the module
+    $null = Test-ServiceNowAuthIsSet
+
     $Global:ServiceNowURL = 'https://' + $url
     $Global:ServiceNowRESTURL = $ServiceNowURL + '/api/now/v1'
     $Global:ServiceNowCredentials = $credentials
