@@ -12,7 +12,6 @@ function Invoke-ServiceNowRestMethod {
         Service-Now Kingston REST Table API: https://docs.servicenow.com/bundle/kingston-application-development/page/integrate/inbound-rest/concept/c_TableAPI.html
         Service-Now Table API FAQ: https://hi.service-now.com/kb_view.do?sysparm_article=KB0534905
 #>
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
     [OutputType([System.Management.Automation.PSCustomObject])]
     [CmdletBinding(SupportsPaging)]
